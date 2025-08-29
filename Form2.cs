@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿
+using System.Data;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -394,14 +395,14 @@ namespace Ybsfsb
             if (!string.IsNullOrEmpty(Outputxml))
             {
 
-                {
-                    MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
-               "医保返回",
-               MessageBoxButtons.OK,
-               MessageBoxIcon.Information);
-                    waitForm.Close();
+               // {
+               //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
+               //"医保返回",
+               //MessageBoxButtons.OK,
+               //MessageBoxIcon.Information);
+               //     waitForm.Close();
 
-                }
+               // }
                 string filePath = "c:/123.txt";
 
                 if (!File.Exists(filePath))
@@ -429,7 +430,8 @@ namespace Ybsfsb
      { 22, "结算编号" },
     { 27, "操作员" },
     { 36, "身份证号" },
-
+     { 24, "支付类别" },
+     { 12, "清算类别" },
     { 38, "原发送报文ID" }
 }
             ;
@@ -465,6 +467,7 @@ namespace Ybsfsb
 
                 // 3. 绑定 DataGridView
                 drsjk.DataSource = dt;
+                waitForm.Close();
 
             }
         }
@@ -482,7 +485,7 @@ namespace Ybsfsb
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel文件|*.xlsx";
             saveFileDialog.Title = "导出Excel";
-            saveFileDialog.FileName = "导出数据.xlsx";
+            saveFileDialog.FileName = "结算查询数据47接口导出.xlsx";
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
 
             // 创建Excel工作簿
