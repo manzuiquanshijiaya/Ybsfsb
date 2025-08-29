@@ -343,7 +343,7 @@ namespace Ybsfsb
 
 );
             string BusinessID = "47";
-            string Dataxml = dataxml.ToString();               // 构造你的参数
+            string Dataxml = dataxml.ToString();               // 构造你的参数123
             string Businesssequence = "";
             string Businessvalidate = "";
             string Outputxml = "";
