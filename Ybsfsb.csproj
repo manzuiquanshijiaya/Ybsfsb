@@ -8,7 +8,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>x86</PlatformTarget>
     <PackageIcon>生成医保图标.png</PackageIcon>
+    <ApplicationIcon>生成医保图标.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="生成医保图标.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NPOI" Version="2.7.4" />

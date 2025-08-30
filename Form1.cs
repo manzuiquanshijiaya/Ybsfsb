@@ -264,8 +264,8 @@ namespace Ybsfsb
         {
             Form2 form2 = new Form2(); // 创建 Form2 实例
 
-            form2.Show(); // 方式1：非模态显示（两个窗体都能操作）
-                          // form2.ShowDialog(); // 方式2：模态显示（必须先关掉 Form2 才能回到 Form1）
+            //form2.Show(); // 方式1：非模态显示（两个窗体都能操作）
+                           form2.ShowDialog(); // 方式2：模态显示（必须先关掉 Form2 才能回到 Form1）
         }
     }
 }

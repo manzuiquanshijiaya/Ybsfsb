@@ -516,5 +516,13 @@ namespace Ybsfsb
 
             MessageBox.Show("导出成功！");
         }
+
+        private void qtjk_Click(object sender, EventArgs e)
+        {
+            Form3qtjk form3qtjk = new Form3qtjk(); // 创建 Form2 实例
+
+            form3qtjk.Show(); // 方式1：非模态显示（两个窗体都能操作）
+                          // form2.ShowDialog(); // 方式2：模态显示（必须先关掉 Form2 才能回到 Form1）
+        }
     }
 }

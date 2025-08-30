@@ -47,7 +47,7 @@
             label6 = new Label();
             kssj = new DateTimePicker();
             jssj = new DateTimePicker();
-            button1 = new Button();
+            qtjk = new Button();
             ((System.ComponentModel.ISupportInitialize)drsjk).BeginInit();
             SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 332);
+            label2.Location = new Point(12, 341);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 1;
@@ -72,7 +72,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(15, 292);
+            label3.Location = new Point(15, 301);
             label3.Name = "label3";
             label3.Size = new Size(69, 20);
             label3.TabIndex = 2;
@@ -103,14 +103,14 @@
             // 
             // jgbm47
             // 
-            jgbm47.Location = new Point(103, 293);
+            jgbm47.Location = new Point(91, 305);
             jgbm47.Name = "jgbm47";
             jgbm47.Size = new Size(156, 27);
             jgbm47.TabIndex = 6;
             // 
             // rybh47
             // 
-            rybh47.Location = new Point(91, 329);
+            rybh47.Location = new Point(91, 338);
             rybh47.Name = "rybh47";
             rybh47.Size = new Size(274, 27);
             rybh47.TabIndex = 7;
@@ -118,10 +118,10 @@
             // drsjk
             // 
             drsjk.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            drsjk.Location = new Point(-1, 123);
+            drsjk.Location = new Point(-5, 132);
             drsjk.Name = "drsjk";
             drsjk.RowHeadersWidth = 51;
-            drsjk.Size = new Size(798, 161);
+            drsjk.Size = new Size(981, 161);
             drsjk.TabIndex = 8;
             // 
             // H28d
@@ -138,7 +138,7 @@
             // ybzdxz
             // 
             ybzdxz.ForeColor = SystemColors.Highlight;
-            ybzdxz.Location = new Point(652, 7);
+            ybzdxz.Location = new Point(831, 7);
             ybzdxz.Name = "ybzdxz";
             ybzdxz.Size = new Size(123, 29);
             ybzdxz.TabIndex = 10;
@@ -149,7 +149,7 @@
             // dc
             // 
             dc.ForeColor = SystemColors.Highlight;
-            dc.Location = new Point(665, 88);
+            dc.Location = new Point(843, 97);
             dc.Name = "dc";
             dc.Size = new Size(123, 29);
             dc.TabIndex = 11;
@@ -160,7 +160,7 @@
             // drsjcs
             // 
             drsjcs.ForeColor = SystemColors.Highlight;
-            drsjcs.Location = new Point(536, 88);
+            drsjcs.Location = new Point(700, 97);
             drsjcs.Name = "drsjcs";
             drsjcs.Size = new Size(123, 29);
             drsjcs.TabIndex = 12;
@@ -171,7 +171,7 @@
             // jsxxcx47
             // 
             jsxxcx47.ForeColor = SystemColors.Highlight;
-            jsxxcx47.Location = new Point(291, 376);
+            jsxxcx47.Location = new Point(9, 469);
             jsxxcx47.Name = "jsxxcx47";
             jsxxcx47.Size = new Size(185, 29);
             jsxxcx47.TabIndex = 13;
@@ -182,7 +182,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(434, 333);
+            label5.Location = new Point(15, 419);
             label5.Name = "label5";
             label5.Size = new Size(69, 20);
             label5.TabIndex = 14;
@@ -191,7 +191,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(434, 296);
+            label6.Location = new Point(15, 382);
             label6.Name = "label6";
             label6.Size = new Size(69, 20);
             label6.TabIndex = 15;
@@ -199,34 +199,37 @@
             // 
             // kssj
             // 
-            kssj.Location = new Point(527, 292);
+            kssj.Location = new Point(108, 378);
             kssj.Name = "kssj";
             kssj.Size = new Size(166, 27);
             kssj.TabIndex = 16;
             // 
             // jssj
             // 
-            jssj.Location = new Point(525, 329);
+            jssj.Location = new Point(108, 415);
             jssj.Name = "jssj";
             jssj.Size = new Size(168, 27);
             jssj.TabIndex = 17;
             // 
-            // button1
+            // qtjk
             // 
-            button1.Location = new Point(665, 376);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 18;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            qtjk.BackColor = Color.LavenderBlush;
+            qtjk.ForeColor = SystemColors.Highlight;
+            qtjk.Location = new Point(860, 52);
+            qtjk.Name = "qtjk";
+            qtjk.Size = new Size(94, 29);
+            qtjk.TabIndex = 18;
+            qtjk.Text = "其它接口";
+            qtjk.UseVisualStyleBackColor = false;
+            qtjk.Click += qtjk_Click;
             // 
             // Form2
             // 
             AccessibleRole = AccessibleRole.MenuBar;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            ClientSize = new Size(978, 522);
+            Controls.Add(qtjk);
             Controls.Add(jssj);
             Controls.Add(kssj);
             Controls.Add(label6);
@@ -274,6 +277,6 @@
         private Label label6;
         private DateTimePicker kssj;
         private DateTimePicker jssj;
-        private Button button1;
+        private Button qtjk;
     }
 }
