@@ -3,11 +3,9 @@ using System.Data;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI.XSSF.UserModel;  // 对应 .xlsx
-using NPOI.SS.UserModel;
-using System.IO;
-using System;
 using NPOI.HSSF.UserModel; // 用于.xls
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;  // 对应 .xlsx
 
 namespace Ybsfsb
 {
@@ -343,7 +341,7 @@ namespace Ybsfsb
 
 );
             string BusinessID = "47";
-            string Dataxml = dataxml.ToString();               // 构造你的参数123666
+            string Dataxml = dataxml.ToString();               // 构造你的参数
             string Businesssequence = "";
             string Businessvalidate = "";
             string Outputxml = "";
@@ -395,14 +393,14 @@ namespace Ybsfsb
             if (!string.IsNullOrEmpty(Outputxml))
             {
 
-               // {
-               //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
-               //"医保返回",
-               //MessageBoxButtons.OK,
-               //MessageBoxIcon.Information);
-               //     waitForm.Close();
+                // {
+                //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
+                //"医保返回",
+                //MessageBoxButtons.OK,
+                //MessageBoxIcon.Information);
+                //     waitForm.Close();
 
-               // }
+                // }
                 string filePath = "c:/123.txt";
 
                 if (!File.Exists(filePath))

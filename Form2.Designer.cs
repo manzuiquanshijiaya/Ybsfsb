@@ -47,6 +47,7 @@
             label6 = new Label();
             kssj = new DateTimePicker();
             jssj = new DateTimePicker();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)drsjk).BeginInit();
             SuspendLayout();
             // 
@@ -170,7 +171,7 @@
             // jsxxcx47
             // 
             jsxxcx47.ForeColor = SystemColors.Highlight;
-            jsxxcx47.Location = new Point(307, 382);
+            jsxxcx47.Location = new Point(291, 376);
             jsxxcx47.Name = "jsxxcx47";
             jsxxcx47.Size = new Size(185, 29);
             jsxxcx47.TabIndex = 13;
@@ -210,12 +211,22 @@
             jssj.Size = new Size(168, 27);
             jssj.TabIndex = 17;
             // 
+            // button1
+            // 
+            button1.Location = new Point(665, 376);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 18;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AccessibleRole = AccessibleRole.MenuBar;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(jssj);
             Controls.Add(kssj);
             Controls.Add(label6);
@@ -263,5 +274,6 @@
         private Label label6;
         private DateTimePicker kssj;
         private DateTimePicker jssj;
+        private Button button1;
     }
 }
