@@ -29,19 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3qtjk));
+            richTextBox1 = new RichTextBox();
             SuspendLayout();
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(148, 190);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(638, 120);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "最新接口更新请致电19967120544";
             // 
             // Form3qtjk
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(978, 522);
+            Controls.Add(richTextBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form3qtjk";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "医保";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private RichTextBox richTextBox1;
     }
 }
