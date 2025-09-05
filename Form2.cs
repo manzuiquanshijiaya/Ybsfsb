@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Linq;
 using NPOI.HSSF.UserModel; // 用于.xls
 using NPOI.SS.UserModel;
+using NPOI.XSSF.Streaming;
 using NPOI.XSSF.UserModel;  // 对应 .xlsx
 
 namespace Ybsfsb
@@ -486,8 +487,8 @@ namespace Ybsfsb
             saveFileDialog.FileName = "结算查询数据47接口导出.xlsx";
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
 
-            // 创建Excel工作簿
-            IWorkbook workbook = new XSSFWorkbook();
+            // 使用 SXSSFWorkbook（流式写入，参数100表示内存中只保留100行1）
+            SXSSFWorkbook workbook = new SXSSFWorkbook(100);
             ISheet sheet = workbook.CreateSheet("数据");
 
             // 写入表头
@@ -513,6 +514,9 @@ namespace Ybsfsb
             {
                 workbook.Write(fs);
             }
+
+            // 释放临时文件资源
+            workbook.Dispose();
 
             MessageBox.Show("导出成功！");
         }
