@@ -533,5 +533,133 @@ namespace Ybsfsb
             // form3qtjk.Show(); // 方式1：非模态显示（两个窗体都能操作）
             form3qtjk.ShowDialog(); // 方式2：模态显示（必须先关掉 Form2 才能回到 Form1）
         }
+
+        private void ybjk04_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 创建 COM 对象
+                Type comType = Type.GetTypeFromProgID("yinhai.TAIYUAN.interface");
+                if (comType == null)
+                {
+                    MessageBox.Show("请检查医保组件是否安装有问题！");
+                    return;
+                }
+
+                dynamic yinhaiobject = Activator.CreateInstance(comType);
+
+                // 准备参数
+                string BusinessID = "04";
+                string Dataxml = "<input>\r\n  <prm_payoptype>04</prm_payoptype>\r\n</input>";               // 构造你的参数
+                string Businesssequence = "";
+                string Businessvalidate = "";
+                string Outputxml = "";
+                long Appcode = 0;
+                string Appmsg = " ";
+
+                // 调用方法
+                yinhaiobject.yh_interface_init("10086", "10010");
+
+                // 创建等待框
+                Form waitForm = new Form()
+                {
+                    Text = "查询",
+                    Size = new Size(400, 200),
+                    StartPosition = FormStartPosition.CenterScreen,
+                    ControlBox = false,
+                    FormBorderStyle = FormBorderStyle.FixedDialog
+                };
+                Label label = new Label()
+                {
+                    Text = "正在连接医保网查询中，请稍候...",
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                waitForm.Controls.Add(label);
+                // 显示等待框（非模态，防止阻塞 UI）
+                waitForm.Show();
+                waitForm.Refresh();
+
+
+
+                yinhaiobject.yh_interface_call(
+                    BusinessID,
+                    Dataxml,
+                  ref Businesssequence,
+                 ref Businessvalidate,
+                  ref Outputxml,
+                   ref Appcode,
+                  ref Appmsg
+                );
+
+
+
+                if (!string.IsNullOrEmpty(Appmsg))
+                {
+                    waitForm.Close();
+                    string message = $"【医保接口提示】\n{Appmsg}\n";
+                    MessageBox.Show(message, "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (!string.IsNullOrEmpty(Outputxml))
+                {
+
+                    // 加载 XML 字符串
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(Outputxml);  // Outputxml 是你的 XML 字符串
+
+
+
+
+
+
+                    XmlNodeList nodes021 = doc.SelectNodes("//output/prm_akb021");
+                    XmlNodeList nodes020 = doc.SelectNodes("//output/prm_akb020");
+
+                    StringBuilder sb = new StringBuilder();
+
+                    if (nodes021 != null && nodes021.Count > 0)
+                    {
+                        sb.AppendLine("医院名称：");
+                        foreach (XmlNode node in nodes021)
+                        {
+                            sb.AppendLine(node.InnerText);
+                        }
+                    }
+                    else
+                    {
+                        sb.AppendLine("未找到 prm_akb021 节点");
+                    }
+
+                    sb.AppendLine(); // 空行
+
+                    if (nodes020 != null && nodes020.Count > 0)
+                    {
+                        sb.AppendLine("医疗机构编码：");
+                        foreach (XmlNode node in nodes020)
+                        {
+                            sb.AppendLine(node.InnerText);
+                        }
+                    }
+                    else
+                    {
+                        sb.AppendLine("未找到 prm_akb020 节点");
+                    }
+
+                    MessageBox.Show(sb.ToString(), "医院名称");
+
+
+
+
+
+                }
+                waitForm.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("调用失败：" + ex.Message);
+            }
+        }
     }
 }

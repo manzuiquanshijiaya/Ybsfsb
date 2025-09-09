@@ -48,6 +48,7 @@
             kssj = new DateTimePicker();
             jssj = new DateTimePicker();
             qtjk = new Button();
+            ybjk04 = new Button();
             ((System.ComponentModel.ISupportInitialize)drsjk).BeginInit();
             SuspendLayout();
             // 
@@ -223,12 +224,24 @@
             qtjk.UseVisualStyleBackColor = false;
             qtjk.Click += qtjk_Click;
             // 
+            // ybjk04
+            // 
+            ybjk04.ForeColor = SystemColors.Highlight;
+            ybjk04.Location = new Point(459, 9);
+            ybjk04.Name = "ybjk04";
+            ybjk04.Size = new Size(200, 29);
+            ybjk04.TabIndex = 19;
+            ybjk04.Text = "医院名称查询（04）";
+            ybjk04.UseVisualStyleBackColor = true;
+            ybjk04.Click += ybjk04_Click;
+            // 
             // Form2
             // 
             AccessibleRole = AccessibleRole.MenuBar;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 522);
+            Controls.Add(ybjk04);
             Controls.Add(qtjk);
             Controls.Add(jssj);
             Controls.Add(kssj);
@@ -278,5 +291,6 @@
         private DateTimePicker kssj;
         private DateTimePicker jssj;
         private Button qtjk;
+        private Button ybjk04;
     }
 }
