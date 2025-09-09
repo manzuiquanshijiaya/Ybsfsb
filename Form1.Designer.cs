@@ -203,7 +203,7 @@
             button1.ForeColor = SystemColors.Highlight;
             button1.Location = new Point(434, 483);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(157, 29);
             button1.TabIndex = 16;
             button1.Text = "医保身份识别";
             button1.UseVisualStyleBackColor = true;

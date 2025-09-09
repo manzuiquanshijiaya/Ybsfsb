@@ -644,7 +644,7 @@ namespace Ybsfsb
                     {
                         sb.AppendLine("未找到 prm_akb020 节点");
                     }
-
+                    waitForm.Close();
                     MessageBox.Show(sb.ToString(), "医院名称");
 
 
@@ -652,7 +652,7 @@ namespace Ybsfsb
 
 
                 }
-                waitForm.Close();
+               
 
 
             }

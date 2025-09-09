@@ -104,6 +104,7 @@ namespace Ybsfsb
                         XmlNode firstRow = rowNodes[0];
                         string prm_sysdate = firstRow.InnerText;
                         // 显示在文本框中
+                        waitForm.Close();
                         MessageBox.Show("当前医保中心时间为："+ prm_sysdate, "解析结果");
                     }
                     else
@@ -115,7 +116,7 @@ namespace Ybsfsb
 
 
                 }
-                waitForm.Close();
+                
 
 
             }
