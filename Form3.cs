@@ -87,7 +87,7 @@ namespace Ybsfsb
                 if (!string.IsNullOrEmpty(Outputxml))
                 {
 
-                    // 加载 XML 字符串
+                    // 加载 XML 字1符串
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(Outputxml);  // Outputxml 是你的 XML 字符串
 
