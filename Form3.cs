@@ -156,7 +156,7 @@ namespace Ybsfsb
 
                 XElement xElement = new XElement("input",
                     new XElement("prm_akb020", jgbm),
-                    new XElement("prm_outputfile", "c:/123nursecode.txt"),
+                    new XElement("prm_outputfile", "D:/123nursecode.txt"),
                     new XElement("page_num", "1"),   // 开始日期
                     new XElement("page_size", "100") // 结束日期
                 );
@@ -169,12 +169,12 @@ namespace Ybsfsb
                 if (!string.IsNullOrEmpty(appMsggb002))
                 {
                     CloseWaitForm();
-                    MessageBox.Show($"【医保接口提示】\n{appMsg}\n", "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"【医保接口提示】\n{appMsggb002}\n", "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 //if (!string.IsNullOrEmpty(outputXmlgb002))
                 //{
                 //    CloseWaitForm();
-                //    MessageBox.Show("成功生成文件c:/123nursecode.txt");
+                //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
                 //}
                 if (!string.IsNullOrEmpty(outputXmlgb002))
                 {
@@ -187,7 +187,7 @@ namespace Ybsfsb
                     //     waitForm.Close();
 
                     // }
-                    string filePath = "c:/123nursecode.txt";
+                    string filePath = "D:/123nursecode.txt";
 
                     if (!File.Exists(filePath))
                     {
@@ -434,7 +434,7 @@ namespace Ybsfsb
 
                 XElement xElement = new XElement("input",
                     new XElement("prm_akb020", jgbm),
-                    new XElement("prm_outputfile", "c:/123nursecode.txt")
+                    new XElement("prm_outputfile", "D:/123nursecode.txt")
 
                 );
                 string businessIdgb002 = "GB001";
@@ -451,7 +451,7 @@ namespace Ybsfsb
                 //if (!string.IsNullOrEmpty(outputXmlgb002))
                 //{
                 //    CloseWaitForm();
-                //    MessageBox.Show("成功生成文件c:/123nursecode.txt");
+                //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
                 //}
                 if (!string.IsNullOrEmpty(outputXmlgb002))
                 {
@@ -464,7 +464,7 @@ namespace Ybsfsb
                     //     waitForm.Close();
 
                     // }
-                    string filePath = "c:/123nursecode.txt";
+                    string filePath = "D:/123nursecode.txt";
 
                     if (!File.Exists(filePath))
                     {
@@ -581,7 +581,7 @@ namespace Ybsfsb
 
                 XElement xElement = new XElement("input",
                     new XElement("prm_akb020", jgbm),
-                    new XElement("prm_outputfile", "c:/123nursecode.txt")
+                    new XElement("prm_outputfile", "D:/123nursecode.txt")
 
                 );
                 string businessIdgb002 = "GB004";
@@ -598,7 +598,7 @@ namespace Ybsfsb
                 //if (!string.IsNullOrEmpty(outputXmlgb002))
                 //{
                 //    CloseWaitForm();
-                //    MessageBox.Show("成功生成文件c:/123nursecode.txt");
+                //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
                 //}
                 if (!string.IsNullOrEmpty(outputXmlgb002))
                 {
@@ -611,7 +611,7 @@ namespace Ybsfsb
                     //     waitForm.Close();
 
                     // }
-                    string filePath = "c:/123nursecode.txt";
+                    string filePath = "D:/123nursecode.txt";
 
                     if (!File.Exists(filePath))
                     {
@@ -718,7 +718,7 @@ namespace Ybsfsb
 
                 XElement xElement = new XElement("input",
                     new XElement("prm_akb020", jgbm),
-                    new XElement("prm_outputfile", "c:/123nursecode.txt")
+                    new XElement("prm_outputfile", "D:/123nursecode.txt")
 
                 );
                 string businessIdgb002 = "GB005";
@@ -735,7 +735,7 @@ namespace Ybsfsb
                 //if (!string.IsNullOrEmpty(outputXmlgb002))
                 //{
                 //    CloseWaitForm();
-                //    MessageBox.Show("成功生成文件c:/123nursecode.txt");
+                //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
                 //}
                 if (!string.IsNullOrEmpty(outputXmlgb002))
                 {
@@ -748,7 +748,7 @@ namespace Ybsfsb
                     //     waitForm.Close();
 
                     // }
-                    string filePath = "c:/123nursecode.txt";
+                    string filePath = "D:/123nursecode.txt";
 
                     if (!File.Exists(filePath))
                     {
@@ -829,7 +829,7 @@ namespace Ybsfsb
 
             XElement xElement = new XElement("input",
                 new XElement("prm_aaalsh", "A5200000000000001000"),
-                new XElement("prm_outputfile", "c:/123nursecode.txt")
+                new XElement("prm_outputfile", "D:/123nursecode.txt")
 
             );
             string businessIdgb002 = "91ANew";
@@ -846,7 +846,7 @@ namespace Ybsfsb
             //if (!string.IsNullOrEmpty(outputXmlgb002))
             //{
             //    CloseWaitForm();
-            //    MessageBox.Show("成功生成文件c:/123nursecode.txt");
+            //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
             //}
             if (!string.IsNullOrEmpty(outputXmlgb002))
             {
@@ -859,7 +859,7 @@ namespace Ybsfsb
                 //     waitForm.Close();
 
                 // }
-                string filePath = "c:/123nursecode.txt";
+                string filePath = "D:/123nursecode.txt";
 
                 if (!File.Exists(filePath))
                 {

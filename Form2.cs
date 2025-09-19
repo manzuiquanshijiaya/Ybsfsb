@@ -338,7 +338,7 @@ namespace Ybsfsb
     new XElement("prm_aac001", rybh47.Text.Trim()),
     new XElement("prm_begindate", kssj.Value.ToString("yyyy-MM-dd")), // 开始日期
     new XElement("prm_enddate", jssj.Value.ToString("yyyy-MM-dd")),   // 结束日期
-    new XElement("prm_outputfile", "c:/123.txt")
+    new XElement("prm_outputfile", "D:/123nursecode.txt")
 
 );
             string BusinessID = "47";
@@ -395,14 +395,14 @@ namespace Ybsfsb
             {
 
                 // {
-                //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
+                //     MessageBox.Show("该患者的结算信息已经存放在  " + "D:/123nursecode.txt" + "  ”请到C盘核实！",
                 //"医保返回",
                 //MessageBoxButtons.OK,
                 //MessageBoxIcon.Information);
                 //     waitForm.Close();
 
                 // }
-                string filePath = "c:/123.txt";
+                string filePath = "D:/123nursecode.txt";
 
                 if (!File.Exists(filePath))
                 {
@@ -416,32 +416,10 @@ namespace Ybsfsb
                 // 2. 创建 DataTable
                 DataTable dt = new DataTable();
                 // 定义固定表头映射（列索引 -> 列名）
-                Dictionary<int, string> headerMap = new Dictionary<int, string>
-{
-    { 0, "人员编号" },
-    { 2, "消费总金额" },
-      { 7, "统筹报销金额" },
-    { 35, "统筹区划" },
-
-    { 1, "个人帐户支付金额" },
-     { 20, "就诊编号" },
-    { 21, "姓名" },
-     { 22, "结算编号" },
-    { 27, "操作员" },
-     { 26, "操作员工号" },
-     { 25, "参保区划" },
-      { 28, "医疗救助" },
-    { 36, "身份证号" },
-     { 24, "支付类别" },
-     { 12, "清算类别" },
-     { 19, "结算时间" },
-     { 16, "医疗类别" },
-       { 23, "社会保险办法" },
-    { 38, "原发送报文ID" }
-};
+                Dictionary<int, string> headerMap = GetHeaderMap();
                 //定义字典
-                
-Dictionary<string, string> payTypeMap = new Dictionary<string, string>
+
+                Dictionary<string, string> payTypeMap = new Dictionary<string, string>
 {
   { "108", "辅助生殖门诊" },
     { "11", "普通门诊" },
@@ -678,6 +656,53 @@ Dictionary<string, string> payTypeMap = new Dictionary<string, string>
                 waitForm.Close();
 
             }
+        }
+
+        private static Dictionary<int, string> GetHeaderMap()
+        {
+            return new Dictionary<int, string>
+{
+    { 0,  "人员编号" },              // aac001 个人编号
+{ 1,  "个人帐户支付金额" },      // yka065 个人帐户支付金额
+{ 2,  "消费总金额" },            // yka055 医疗费总额
+{ 3,  "全自费金额" },            // yka056 全自费金额
+{ 4,  "挂钩自付金额" },          // yka057 挂钩自付金额
+{ 5,  "符合范围金额" },          // yka111 符合范围金额
+{ 6,  "进入起付线金额" },        // yka058 进入起付线金额
+{ 7,  "统筹报销金额" },          // yka248 基本医疗统筹支付金额
+{ 8,  "大额医疗支付金额" },      // yka062 大额医疗支付金额
+{ 9,  "公务员补助报销金额" },    // yke030 公务员补助报销金额
+{ 10, "个人账户支付后余额" },    // ykc177 个人账户支付后余额
+{ 11, "清算分中心" },            // ykb037 清算分中心
+{ 12, "清算类别" },              // yka316 清算类别
+{ 13, "清算方式" },              // yka054 清算方式
+{ 14, "清算期号" },              // yae366 清算期号
+{ 15, "医疗人员类别" },          // akc021 医疗人员类别
+{ 16, "医疗类别" },              // ykc121 就诊结算方式
+{ 17, "居保人员类别" },          // ykc280 居保人员类别
+{ 18, "居保人员身份" },          // ykc281 居保人员身份
+{ 19, "结算时间" },              // aae036 经办时间
+{ 20, "就诊编号" },              // akc190 门诊住院流水号
+{ 21, "姓名" },                  // aac003 姓名
+{ 22, "结算编号" },              // yka103 结算编号
+{ 23, "社会保险办法" },          // ykb065 执行社会保险办法
+{ 24, "支付类别" },              // aka130 支付类别
+{ 25, "参保区划" },              // yab003 行政区划
+{ 26, "操作员工号" },            // aae011 经办人编码
+{ 27, "操作员" },                // ykc141 经办人姓名
+{ 28, "医疗救助" },              // yka469 医疗救助
+{ 29, "卫计补偿" },              // yka471 卫计补偿
+{ 30, "优抚补偿" },              // ake183 优抚补偿
+{ 31, "其它基金" },              // ake173 其它基金
+{ 32, "就诊凭证类型" },          // mdtrtCertType 就诊凭证类型
+{ 33, "病种编码" },              // diseNo 病种编码
+{ 34, "病种名称" },              // diseName 病种名称
+{ 35, "统筹区划" },              // yab139 参保分中心
+{ 36, "身份证号" },              // aac002 身份证号
+{ 37, "特殊人员类型" },          // spPsnType 特殊人员类型
+{ 38, "原发送报文ID" }        // medins_setlId 结算报文 id
+
+};
         }
 
         private void dc_Click(object sender, EventArgs e)
