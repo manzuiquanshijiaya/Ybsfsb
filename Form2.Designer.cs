@@ -52,6 +52,7 @@
             ssnr = new TextBox();
             button1 = new Button();
             button2 = new Button();
+            ybsfsbff = new Button();
             ((System.ComponentModel.ISupportInitialize)drsjk).BeginInit();
             SuspendLayout();
             // 
@@ -268,12 +269,24 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // ybsfsbff
+            // 
+            ybsfsbff.ForeColor = SystemColors.Highlight;
+            ybsfsbff.Location = new Point(459, 52);
+            ybsfsbff.Name = "ybsfsbff";
+            ybsfsbff.Size = new Size(200, 29);
+            ybsfsbff.TabIndex = 23;
+            ybsfsbff.Text = "医保身份识别（03）";
+            ybsfsbff.UseVisualStyleBackColor = true;
+            ybsfsbff.Click += ybsfsbff_Click;
+            // 
             // Form2
             // 
             AccessibleRole = AccessibleRole.MenuBar;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 522);
+            Controls.Add(ybsfsbff);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(ssnr);
@@ -331,5 +344,6 @@
         private TextBox ssnr;
         private Button button1;
         private Button button2;
+        private Button ybsfsbff;
     }
 }

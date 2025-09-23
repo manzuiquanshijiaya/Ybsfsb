@@ -1155,7 +1155,7 @@ namespace Ybsfsb
             // 3. 保存和绑定 DataGridView
             originalTable = dt;           // 保存原始表
             drsjk.DataSource = originalTable;
-            
+
 
 
 
@@ -1204,6 +1204,14 @@ namespace Ybsfsb
             drsjk.DataSource = originalTable;
 
             ssnr.Clear();
+        }
+
+        private void ybsfsbff_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1(); // 创建 Form2 实例
+
+            // form3qtjk.Show(); // 方式1：非模态显示（两个窗体都能操作）
+            form1.ShowDialog(); // 方式2：模态显示（必须先关掉 Form2 才能回到 Form1）
         }
     }
 }

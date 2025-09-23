@@ -58,7 +58,6 @@
             xb = new TextBox();
             rysjk = new DataGridView();
             mbsjk = new DataGridView();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)rysjk).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mbsjk).BeginInit();
             SuspendLayout();
@@ -304,24 +303,11 @@
             mbsjk.Size = new Size(972, 153);
             mbsjk.TabIndex = 29;
             // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.InactiveCaption;
-            button2.ForeColor = Color.IndianRed;
-            button2.Location = new Point(697, 61);
-            button2.Name = "button2";
-            button2.Size = new Size(113, 29);
-            button2.TabIndex = 30;
-            button2.Text = "更多医保接口";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 522);
-            Controls.Add(button2);
             Controls.Add(mbsjk);
             Controls.Add(rysjk);
             Controls.Add(xb);
@@ -391,6 +377,5 @@
         private TextBox xb;
         private DataGridView rysjk;
         private DataGridView mbsjk;
-        private Button button2;
     }
 }
