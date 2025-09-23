@@ -49,6 +49,9 @@
             jssj = new DateTimePicker();
             qtjk = new Button();
             ybjk04 = new Button();
+            ssnr = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)drsjk).BeginInit();
             SuspendLayout();
             // 
@@ -235,12 +238,45 @@
             ybjk04.UseVisualStyleBackColor = true;
             ybjk04.Click += ybjk04_Click;
             // 
+            // ssnr
+            // 
+            ssnr.Location = new Point(736, 304);
+            ssnr.Name = "ssnr";
+            ssnr.Size = new Size(125, 27);
+            ssnr.TabIndex = 20;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ControlLightLight;
+            button1.ForeColor = SystemColors.Highlight;
+            button1.Location = new Point(636, 305);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 21;
+            button1.Text = "查询";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.ForeColor = SystemColors.Highlight;
+            button2.Location = new Point(870, 302);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 22;
+            button2.Text = "恢复数据";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form2
             // 
             AccessibleRole = AccessibleRole.MenuBar;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 522);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(ssnr);
             Controls.Add(ybjk04);
             Controls.Add(qtjk);
             Controls.Add(jssj);
@@ -292,5 +328,8 @@
         private DateTimePicker jssj;
         private Button qtjk;
         private Button ybjk04;
+        private TextBox ssnr;
+        private Button button1;
+        private Button button2;
     }
 }
