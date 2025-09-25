@@ -58,6 +58,8 @@
             xb = new TextBox();
             rysjk = new DataGridView();
             mbsjk = new DataGridView();
+            rybh03 = new TextBox();
+            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)rysjk).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mbsjk).BeginInit();
             SuspendLayout();
@@ -303,11 +305,29 @@
             mbsjk.Size = new Size(972, 153);
             mbsjk.TabIndex = 29;
             // 
+            // rybh03
+            // 
+            rybh03.Location = new Point(335, 140);
+            rybh03.Name = "rybh03";
+            rybh03.Size = new Size(307, 27);
+            rybh03.TabIndex = 30;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(260, 144);
+            label15.Name = "label15";
+            label15.Size = new Size(69, 20);
+            label15.TabIndex = 31;
+            label15.Text = "人员编号";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 522);
+            Controls.Add(label15);
+            Controls.Add(rybh03);
             Controls.Add(mbsjk);
             Controls.Add(rysjk);
             Controls.Add(xb);
@@ -377,5 +397,7 @@
         private TextBox xb;
         private DataGridView rysjk;
         private DataGridView mbsjk;
+        private TextBox rybh03;
+        private Label label15;
     }
 }

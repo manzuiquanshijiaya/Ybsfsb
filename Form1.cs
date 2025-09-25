@@ -110,7 +110,7 @@ namespace Ybsfsb
                         {
                             xb.Text = "其它"; // 其他值显示空
                         }
-
+                        rybh03.Text = root.SelectSingleNode("prm_aac001")?.InnerText ?? "";
                         nl.Text = root.SelectSingleNode("prm_akc023")?.InnerText ?? "";
                         sfzh.Text = root.SelectSingleNode("prm_aac002")?.InnerText ?? "";
                         dz.Text = root.SelectSingleNode("prm_aac006")?.InnerText ?? "";
