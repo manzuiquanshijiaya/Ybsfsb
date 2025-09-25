@@ -47,25 +47,26 @@ namespace Ybsfsb
             yinhaiobject.yh_interface_init("10086", "10010");
 
             // 创建等待框
-            Form waitForm = new Form()
-            {
-                Text = "查询",
-                Size = new Size(400, 200),
-                StartPosition = FormStartPosition.CenterScreen,
-                ControlBox = false,
-                FormBorderStyle = FormBorderStyle.FixedDialog
-            };
-            Label label = new Label()
-            {
-                Text = "正在连接医保网查询中，请稍候...",
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            waitForm.Controls.Add(label);
-            // 显示等待框（非模态，防止阻塞 UI）
-            waitForm.Show();
-            waitForm.Refresh();
-
+            //Form waitForm = new Form()
+            //{
+            //    Text = "查询",
+            //    Size = new Size(400, 200),
+            //    StartPosition = FormStartPosition.CenterScreen,
+            //    ControlBox = false,
+            //    FormBorderStyle = FormBorderStyle.FixedDialog
+            //};
+            //Label label = new Label()
+            //{
+            //    Text = "正在连接医保网查询中，请稍候...",
+            //    Dock = DockStyle.Fill,
+            //    TextAlign = ContentAlignment.MiddleCenter
+            //};
+            //waitForm.Controls.Add(label);
+            //// 显示等待框（非模态，防止阻塞 UI）
+            //waitForm.Show();
+            //waitForm.Refresh();
+            Form3qtjk.ShowWaitForm();
+          
 
 
             yinhaiobject.yh_interface_call(
@@ -81,7 +82,8 @@ namespace Ybsfsb
             //开始解析
             if (!string.IsNullOrEmpty(Appmsg))
             {
-                waitForm.Close();
+                //  waitForm.Close();
+                Form3qtjk.CloseWaitForm();
                 string message = $"【医保接口提示】\n{Appmsg}\n";
                 MessageBox.Show(message, "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -107,13 +109,15 @@ namespace Ybsfsb
                    "医保返回",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Warning);
-                        waitForm.Close();
+                        Form3qtjk.CloseWaitForm();
 
                     }
                     else
                     {
+                        //  waitForm.Close();
+                        Form3qtjk.CloseWaitForm();
                         MessageBox.Show("### 该患者没有住院信息!!! ###");
-                        waitForm.Close();
+                     
 
                     }
                 }
