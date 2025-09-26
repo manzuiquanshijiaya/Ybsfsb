@@ -827,53 +827,111 @@ namespace Ybsfsb
         {
 
 
-            XElement xElement = new XElement("input",
-                new XElement("prm_aaalsh", "A5200000000000001000"),
-                new XElement("prm_outputfile", "D:/123nursecode.txt")
+            string startSerial = "A5200000000000000000";  // 起始流水号
+            string batchFile = "D:/123nursecode.txt";    // 每次接口默认输出文件
+            string finalFile = "D:/all_data.txt";        // 累积保存的文件
+            int batchSize = 1000;
 
-            );
-            string businessIdgb002 = "91ANew";
-            string dataXmlgb002 = xElement.ToString();
-            string appMsggb002, outputXmlgb002;
-            ShowWaitForm();
-            CallInterface(businessIdgb002, dataXmlgb002, out appMsggb002, out outputXmlgb002);
+            // 如果最终文件已存在，先清空
+            if (File.Exists(finalFile))
+                File.Delete(finalFile);
 
-            if (!string.IsNullOrEmpty(appMsggb002))
+            string currentSerial = startSerial;
+            int totalCount = 0;
+            MessageBox.Show("即将开始下载医保目录数据，下载需要数小时，请耐心等待！可查看\"D:/all_data.txt\"文件大小查询进度！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            while (true)
             {
-                CloseWaitForm();
-                MessageBox.Show($"【医保接口提示】\n{appMsggb002}\n", "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+                // 构造 XML
+                XElement xElement = new XElement("input",
+                    new XElement("prm_aaalsh", currentSerial),
+                    new XElement("prm_outputfile", batchFile)
+                );
+
+                string businessIdgb002 = "91ANew";
+                string dataXmlgb002 = xElement.ToString();
+                string appMsggb002, outputXmlgb002;
+
+
+
+                // 调用接口
+                CallInterface(businessIdgb002, dataXmlgb002, out appMsggb002, out outputXmlgb002);
+                if (!string.IsNullOrEmpty(appMsggb002))
+                {
+                    CloseWaitForm();
+                    MessageBox.Show($"【医保接口提示】\n{appMsggb002}\n", "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                // 读取接口生成的文件
+                string[] batchData = File.Exists(batchFile)
+    ? File.ReadAllLines(batchFile, System.Text.Encoding.GetEncoding("GBK"))
+    : new string[0];
+
+
+                if (batchData.Length == 0)
+                {
+                    Console.WriteLine("没有更多数据，结束循环");
+                    break;
+                }
+
+
+                // 累积保存到最终文件
+                using (var writer = new StreamWriter(finalFile, true, System.Text.Encoding.UTF8))
+                {
+                    foreach (var line in batchData)
+                        writer.WriteLine(line);
+                }
+                totalCount += batchData.Length;
+
+                Console.WriteLine($"本次获取 {batchData.Length} 条数据，总计已保存到 {finalFile}");
+
+                // 判断是否是最后一批
+                if (batchData.Length < batchSize)
+                {
+                    Console.WriteLine("数据小于批量大小，说明最后一批，结束");
+                    break;
+                }
+
+                // 计算下一批流水号
+                currentSerial = IncrementSerial(currentSerial, batchSize);
             }
+
+            Console.WriteLine("✅ 数据全部获取完毕");
+            waitForm.Close();
+
+
             //if (!string.IsNullOrEmpty(outputXmlgb002))
             //{
             //    CloseWaitForm();
             //    MessageBox.Show("成功生成文件D:/123nursecode.txt");
             //}
-            if (!string.IsNullOrEmpty(outputXmlgb002))
+
+
+            // {
+            //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
+            //"医保返回",
+            //MessageBoxButtons.OK,
+            //MessageBoxIcon.Information);
+            //     waitForm.Close();
+
+            // }
+            string filePath = "D:/all_data.txt";
+
+            if (!File.Exists(filePath))
             {
+                MessageBox.Show("文件不存在！");
+                return;
+            }
 
-                // {
-                //     MessageBox.Show("该患者的结算信息已经存放在  " + "C:/123.txt" + "  ”请到C盘核实！",
-                //"医保返回",
-                //MessageBoxButtons.OK,
-                //MessageBoxIcon.Information);
-                //     waitForm.Close();
+            // 1. 读取所有行
+            string[] lines = File.ReadAllLines(filePath, Encoding.GetEncoding("GBK"));
 
-                // }
-                string filePath = "D:/123nursecode.txt";
-
-                if (!File.Exists(filePath))
-                {
-                    MessageBox.Show("文件不存在！");
-                    return;
-                }
-
-                // 1. 读取所有行
-                string[] lines = File.ReadAllLines(filePath, Encoding.GetEncoding("GBK"));
-
-                // 2. 创建 DataTable
-                DataTable dt = new DataTable();
-                // 定义固定表头映射（列索引 -> 列名）
-                Dictionary<int, string> headerMap = new Dictionary<int, string>
+            // 2. 创建 DataTable
+            DataTable dt = new DataTable();
+            // 定义固定表头映射（列索引 -> 列名）
+            Dictionary<int, string> headerMap = new Dictionary<int, string>
 {
    { 0, "流水号" },
 { 1, "医保目录编码" },
@@ -912,47 +970,229 @@ namespace Ybsfsb
 
 
 }
-            ;
+        ;
 
-                foreach (string line in lines)
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                // 按制表符分割
+                string[] parts = line.Split('\t');
+
+                // 如果表头还没创建，就动态添加列
+                // 动态创建表头
+                if (dt.Columns.Count < parts.Length)
                 {
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-
-                    // 按制表符分割
-                    string[] parts = line.Split('\t');
-
-                    // 如果表头还没创建，就动态添加列
-                    // 动态创建表头
-                    if (dt.Columns.Count < parts.Length)
+                    for (int i = dt.Columns.Count; i < parts.Length; i++)
                     {
-                        for (int i = dt.Columns.Count; i < parts.Length; i++)
+                        if (headerMap.ContainsKey(i))
+                            dt.Columns.Add(headerMap[i]);   // 固定列名
+                        else
+                            dt.Columns.Add("字段" + (i + 1)); // 默认列名
+                    }
+                }
+
+                // 加入一行数据
+                DataRow dr = dt.NewRow();
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    dr[i] = parts[i];
+                }
+                dt.Rows.Add(dr);
+            }
+
+            // 3. 绑定 DataGridView
+            xzxxsjk.DataSource = dt;
+            CloseWaitForm();
+
+
+
+
+
+
+
+        }
+
+        // 流水号自增
+        static string IncrementSerial(string serial, int step)
+        {
+            string prefix = serial.Substring(0, 4); // 'A520'
+            long number = long.Parse(serial.Substring(4));
+            number += step;
+            return prefix + number.ToString("D16"); // 保持16位数字
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 创建 COM 对象
+            Type comType = Type.GetTypeFromProgID("yinhai.TAIYUAN.interface");
+            if (comType == null)
+            {
+                MessageBox.Show("请检查医保组件是否安装有问题！");
+                return;
+            }
+
+            dynamic yinhaiobject = Activator.CreateInstance(comType);
+
+            // 准备参数
+            string BusinessID = "02";
+            string Dataxml = "<input> <prm_aae011>ml</prm_aae011> <prm_ykc141>马力</prm_ykc141> <prm_yabtch></prm_yabtch> </input>";               // 构造你的参数
+            string Businesssequence = "";
+            string Businessvalidate = "";
+            string Outputxml = "";
+            long Appcode = 0;
+            string Appmsg = " ";
+
+            // 调用方法
+            yinhaiobject.yh_interface_init("10086", "10010");
+
+            // 创建等待框
+            Form3qtjk.ShowWaitForm();
+
+
+
+            yinhaiobject.yh_interface_call(
+                BusinessID,
+                Dataxml,
+              ref Businesssequence,
+             ref Businessvalidate,
+              ref Outputxml,
+               ref Appcode,
+              ref Appmsg
+            );
+
+
+
+            if (!string.IsNullOrEmpty(Appmsg))
+            {
+                Form3qtjk.CloseWaitForm();
+                string message = $"【医保接口提示】\n{Appmsg}\n";
+                MessageBox.Show(message, "业务返回", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (!string.IsNullOrEmpty(Outputxml))
+            {
+                Form3qtjk.CloseWaitForm();
+                MessageBox.Show("密码修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ybmlxzcx3_Click(object sender, EventArgs e)
+        {
+            string filePath = "D:/all_data.txt";
+
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("文件不存在！");
+                return;
+            }
+
+            // 创建 DataTable（只保存当前页数据）
+            DataTable dt = new DataTable();
+            Dictionary<int, string> headerMap = new Dictionary<int, string>
+{
+    {0,"流水号"},{1,"医保目录编码"},{2,"医保目录名称"},{3,"目录更新时间"},
+    {4,"大类编码"},{5,"统计类型"},{6,"拼音助记码"},{7,"五笔助记码"},
+    {8,"规 格"},{9,"剂型名称"},{10,"备注（贵州其它说明）"},{11,"生产企业代码"},
+    {12,"生产厂家"},{13,"生产地"},{14,"商品名"},{15,"批准文号"},
+    {16,"项目内涵"},{17,"除外内容"},{18,"限制使用说明（国家）"},{19,"生育项目标志"},
+    {20,"创建时间"},{21,"目录启用时间"},{22,"目录停用时间"},{23,"国家目录类别"},
+    {24,"注册规格"},{25,"最小包装数量"},{26,"最小包装单位"},{27,"通用名编号"},
+    {28,"目录剂型"},{29,"本位码"},{30,"是否民族药"},{31,"最小制剂单位"}
+};
+
+            // 分页参数
+            int pageSize = 5000; // 每页读取 5000 行
+            int pageIndex = 0;   // 当前页索引
+            int totalLines = 0;    // 文件总行数
+            // 初始化列
+            for (int i = 0; i < headerMap.Count; i++)
+                dt.Columns.Add(headerMap[i]);
+
+            // 读取指定页
+            void LoadPage(int page)
+            {
+                dt.Rows.Clear();
+                int startLine = page * pageSize;
+                int endLine = startLine + pageSize;
+                int currentLine = 0;
+
+                using (var sr = new StreamReader(filePath, Encoding.GetEncoding("GBK")))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+
+                        if (currentLine >= startLine && currentLine < endLine)
                         {
-                            if (headerMap.ContainsKey(i))
-                                dt.Columns.Add(headerMap[i]);   // 固定列名
-                            else
-                                dt.Columns.Add("字段" + (i + 1)); // 默认列名
+                            string[] parts = line.Split('\t');
+                            DataRow dr = dt.NewRow();
+                            for (int i = 0; i < parts.Length && i < dt.Columns.Count; i++)
+                                dr[i] = parts[i];
+                            dt.Rows.Add(dr);
+                        }
+
+                        currentLine++;
+                        if (currentLine >= endLine) break;
+                    }
+                }
+            }
+
+            // 绑定 DataGridView
+            LoadPage(pageIndex);
+            xzxxsjk.DataSource = dt;
+
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "CSV 文件|*.csv",
+                FileName = "导出数据.csv"
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (var sr = new StreamReader(filePath, Encoding.GetEncoding("GBK")))
+                    using (var sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                    {
+                        // 写表头
+                        string header = string.Join(",", headerMap.Values);
+                        sw.WriteLine(header);
+
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
+
+                            string[] parts = line.Split('\t');
+
+                            // 转成 CSV 格式，注意转义引号和逗号
+                            for (int i = 0; i < parts.Length; i++)
+                            {
+                                string value = parts[i].Replace("\"", "\"\""); // 转义引号
+                                if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+                                    value = $"\"{value}\"";
+                                parts[i] = value;
+                            }
+
+                            sw.WriteLine(string.Join(",", parts));
                         }
                     }
 
-                    // 加入一行数据
-                    DataRow dr = dt.NewRow();
-                    for (int i = 0; i < parts.Length; i++)
-                    {
-                        dr[i] = parts[i];
-                    }
-                    dt.Rows.Add(dr);
+                    MessageBox.Show("导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // 3. 绑定 DataGridView
-                xzxxsjk.DataSource = dt;
-                CloseWaitForm();
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show("导出失败：" + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        
-
-
-            
 
         }
+
+
+
     }
+
 }

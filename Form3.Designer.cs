@@ -38,6 +38,8 @@
             yjryxxxz = new Button();
             yjyfryxxxz = new Button();
             ybmlxj = new Button();
+            button2 = new Button();
+            ybmlxzcx3 = new Button();
             ((System.ComponentModel.ISupportInitialize)xzxxsjk).BeginInit();
             SuspendLayout();
             // 
@@ -138,12 +140,36 @@
             ybmlxj.UseVisualStyleBackColor = true;
             ybmlxj.Click += ybmlxj_Click;
             // 
+            // button2
+            // 
+            button2.ForeColor = SystemColors.Highlight;
+            button2.Location = new Point(495, 70);
+            button2.Name = "button2";
+            button2.Size = new Size(223, 29);
+            button2.TabIndex = 9;
+            button2.Text = "医保密码修改（02）";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // ybmlxzcx3
+            // 
+            ybmlxzcx3.ForeColor = SystemColors.MenuHighlight;
+            ybmlxzcx3.Location = new Point(250, 101);
+            ybmlxzcx3.Name = "ybmlxzcx3";
+            ybmlxzcx3.Size = new Size(168, 29);
+            ybmlxzcx3.TabIndex = 10;
+            ybmlxzcx3.Text = "医保目录展示及导出";
+            ybmlxzcx3.UseVisualStyleBackColor = true;
+            ybmlxzcx3.Click += ybmlxzcx3_Click;
+            // 
             // Form3qtjk
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(978, 522);
+            Controls.Add(ybmlxzcx3);
+            Controls.Add(button2);
             Controls.Add(ybmlxj);
             Controls.Add(yjyfryxxxz);
             Controls.Add(yjryxxxz);
@@ -172,5 +198,7 @@
         private Button yjryxxxz;
         private Button yjyfryxxxz;
         private Button ybmlxj;
+        private Button button2;
+        private Button ybmlxzcx3;
     }
 }

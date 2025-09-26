@@ -116,7 +116,7 @@ namespace Ybsfsb
                     {
                         //  waitForm.Close();
                         Form3qtjk.CloseWaitForm();
-                        MessageBox.Show("### 该患者没有住院信息!!! ###");
+                        MessageBox.Show("### 银海提示：该患者没有住院信息!!! ###");
                      
 
                     }
